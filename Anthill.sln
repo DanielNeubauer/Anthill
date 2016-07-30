@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anthill.Engine", "Engine\Anthill.Engine.csproj", "{25F704D9-BB22-4DB2-8DE9-1BA574722DBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAnthillEngine", "TestAnthillEngine\TestAnthillEngine.csproj", "{0C099C53-ECBD-4F6C-9FB4-F181101AE802}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25F704D9-BB22-4DB2-8DE9-1BA574722DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25F704D9-BB22-4DB2-8DE9-1BA574722DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25F704D9-BB22-4DB2-8DE9-1BA574722DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25F704D9-BB22-4DB2-8DE9-1BA574722DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C099C53-ECBD-4F6C-9FB4-F181101AE802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C099C53-ECBD-4F6C-9FB4-F181101AE802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C099C53-ECBD-4F6C-9FB4-F181101AE802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C099C53-ECBD-4F6C-9FB4-F181101AE802}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

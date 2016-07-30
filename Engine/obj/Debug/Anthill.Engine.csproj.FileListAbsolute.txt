@@ -1,0 +1,5 @@
+c:\users\admin\documents\visual studio 2015\Projects\Anthill\Engine\bin\Debug\Anthill.Engine.dll
+c:\users\admin\documents\visual studio 2015\Projects\Anthill\Engine\bin\Debug\Anthill.Engine.pdb
+c:\users\admin\documents\visual studio 2015\Projects\Anthill\Engine\obj\Debug\Anthill.Engine.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2015\Projects\Anthill\Engine\obj\Debug\Anthill.Engine.dll
+c:\users\admin\documents\visual studio 2015\Projects\Anthill\Engine\obj\Debug\Anthill.Engine.pdb
