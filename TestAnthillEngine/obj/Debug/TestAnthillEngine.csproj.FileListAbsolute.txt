@@ -1,8 +1,0 @@
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\bin\Debug\TestAnthillEngine.exe.config
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\bin\Debug\TestAnthillEngine.exe
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\bin\Debug\TestAnthillEngine.pdb
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\bin\Debug\Anthill.Engine.dll
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\bin\Debug\Anthill.Engine.pdb
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\obj\Debug\TestAnthillEngine.csprojResolveAssemblyReference.cache
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\obj\Debug\TestAnthillEngine.exe
-c:\users\admin\documents\visual studio 2015\Projects\Anthill\TestAnthillEngine\obj\Debug\TestAnthillEngine.pdb
