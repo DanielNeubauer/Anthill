@@ -158,3 +158,5 @@ $RECYCLE.BIN/
 *.user
 *.resources
 /.vs/config/applicationhost.config
+
+/.vs/*
