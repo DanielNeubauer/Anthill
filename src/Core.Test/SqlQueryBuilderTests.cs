@@ -32,7 +32,7 @@ namespace Anthill.Core.Test
                 })
                 .ToQuery();
 
-            Assert.Equal("INSERT INTO User (Name, InUse) VALUES (hamster, True)", query);
+            Assert.Equal("INSERT INTO User (Name, InUse) VALUES ('hamster', true)", query);
         }
     }
 }

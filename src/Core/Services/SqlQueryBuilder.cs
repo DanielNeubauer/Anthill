@@ -38,7 +38,19 @@ namespace Anthill.Engine.Services
         public SqlQueryBuilder Values(params object[] values)
         {
             stringBuilder.Append(" VALUES ");
-            stringBuilder.AppendFormat("({0})", string.Join(", ", values));
+            var correctValues = values.Select<object, string>((input, output) =>
+             {
+                 if (input.GetType() == typeof(string))
+                 {
+                     return $"'{input}'";
+                 }
+                 if(input.GetType() == typeof(bool))
+                 {
+                     return input.ToString().ToLowerInvariant();
+                 }
+                 return input.ToString();
+             });
+            stringBuilder.AppendFormat("({0})", string.Join(", ", correctValues));
             return this;
         }
 
