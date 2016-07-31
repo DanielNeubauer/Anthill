@@ -47,6 +47,7 @@
     <Compile Include="Attributes\ColumnAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="Enum\DatabaseType.cs" />
+    <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\DatabaseModel.cs" />
     <Compile Include="Models\TableModel.cs" />
