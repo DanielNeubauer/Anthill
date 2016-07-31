@@ -17,7 +17,7 @@ namespace Anthill.Engine.Services
 
         public SqlQueryBuilder InsertInto(string tableName)
         {
-            stringBuilder.Append("INSERT INTO {tableName} ");
+            stringBuilder.Append($"INSERT INTO {tableName} ");
             return this;
         }
 
