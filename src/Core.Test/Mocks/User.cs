@@ -5,11 +5,11 @@ namespace Anthill.Core.Test.Models
     [Table("User")]
     public class User
     {
-        [Column(PrimaryKey = true, AutoIncrement = true, Datatype = "INTEGER", Name = "Id")]
+        [Column("Id",PrimaryKey = true, AutoIncrement = true, Datatype = "INTEGER")]
         public int Id { get; set; }
-        [Column(Datatype = "NVARCHAR", Length = 250, Name = "Name")]
+        [Column("Name", Datatype = "NVARCHAR", Length = 250)]
         public string Name { get; set; }
-        [Column(Datatype = "BOOLEAN", Name = "Used")]
+        [Column("Used", Datatype = "BOOLEAN")]
         public bool InUse { get; set; }
     }
 
