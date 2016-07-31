@@ -79,13 +79,27 @@ namespace Anthill.Core.Test
         }
 
         [Fact]
-        public void TestInsert()
+        public void TestInsertWithoutColumns()
         {
             var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
 
             var query = queryBuilder
                 .InsertInto("User")
                 .Values("hamster",true)
+                .ToQuery();
+
+            Assert.Equal("INSERT INTO User VALUES ('hamster', true)", query);
+        }
+
+        [Fact]
+        public void TestInsertWithoutColumnsMultipleValues()
+        {
+            var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
+
+            var query = queryBuilder
+                .InsertInto("User")
+                .Value("hamster")
+                .Value(true)
                 .ToQuery();
 
             Assert.Equal("INSERT INTO User VALUES ('hamster', true)", query);
