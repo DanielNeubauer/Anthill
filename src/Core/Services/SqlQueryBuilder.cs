@@ -15,6 +15,33 @@ namespace Anthill.Engine.Services
 
         private StringBuilder stringBuilder = new StringBuilder();
 
+        public SqlQueryBuilder InsertInto(string tableName)
+        {
+            stringBuilder.Append("INSERT INTO {tableName} ");
+            return this;
+        }
+
+        public SqlQueryBuilder Values(params Tuple<string,object>[] clauses)
+        {
+            var columns = new List<String>();
+            var values = new List<object>();
+            foreach (var clause in clauses)
+            {
+                columns.Add(clause.Item1);
+                values.Add(clause.Item2);
+            }
+            stringBuilder.AppendFormat("({0})", string.Join(", ",columns));
+            Values(values.ToArray());
+            return this;
+        }
+
+        public SqlQueryBuilder Values(params object[] values)
+        {
+            stringBuilder.Append(" VALUES ");
+            stringBuilder.AppendFormat("({0})", string.Join(", ", values));
+            return this;
+        }
+
         public SqlQueryBuilder Select(params string[] parameters)
         {
             stringBuilder.Append("SELECT ");
@@ -39,6 +66,12 @@ namespace Anthill.Engine.Services
         {
             stringBuilder.Append(" ORDER BY ");
             stringBuilder.Append(string.Join(", ", fields));
+            return this;
+        }
+
+        public SqlQueryBuilder Clear()
+        {
+            stringBuilder.Clear();
             return this;
         }
 
