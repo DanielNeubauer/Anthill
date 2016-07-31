@@ -67,6 +67,7 @@
     <Compile Include="Mocks\User.cs" />
     <Compile Include="Services\Configuration\TestConfigurationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlQueryBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
