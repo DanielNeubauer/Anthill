@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Anthill.Engine.Attributes;
+﻿using Anthill.Engine.Attributes;
 
-namespace Engine.Test.Models
+namespace Anthill.Engine.Test.Models
 {
+    [Table(Name = "User")]
     public class User
     {
         [Column(PrimaryKey = true, AutoIncrement = true, Datatype = "INTEGER", Name = "Id")]
@@ -16,6 +12,4 @@ namespace Engine.Test.Models
         [Column(Datatype = "BOOLEAN", Length = 250, Name = "Used")]
         public bool InUse { get; set; }
     }
-
-}
 }
