@@ -1,6 +1,6 @@
 ﻿using Anthill.Engine.Attributes;
 
-namespace Anthill.Engine.Test.Models
+namespace Anthill.Engine.Test.Mocks
 {
     [Table(Name = "User")]
     public class User

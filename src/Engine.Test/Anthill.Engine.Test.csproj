@@ -62,6 +62,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Mocks\FailUser.cs" />
     <Compile Include="Mocks\User.cs" />
     <Compile Include="AttributeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
