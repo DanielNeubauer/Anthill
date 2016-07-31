@@ -66,7 +66,6 @@
     <Compile Include="Mocks\FailUser.cs" />
     <Compile Include="Mocks\User.cs" />
     <Compile Include="Services\Configuration\TestConfigurationManager.cs" />
-    <Compile Include="TableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

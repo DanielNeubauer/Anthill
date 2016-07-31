@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Anthill.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class Table :Attribute
+    public class TableAttribute :Attribute
     {
-        public Table(string name)
+        public TableAttribute(string name)
         {
             Name = name;
         }

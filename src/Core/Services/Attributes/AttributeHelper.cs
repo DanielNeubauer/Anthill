@@ -10,15 +10,15 @@ namespace Anthill.Engine.Services.Attributes
 {
     public class AttributeHelper
     {
-        public Column GetColumnAttribute(PropertyInfo propertyInfo)
+        public ColumnAttribute GetColumnAttribute(PropertyInfo propertyInfo)
         {
-            return (Column)propertyInfo.GetCustomAttribute
-                (typeof(Column), false);
+            return (ColumnAttribute)propertyInfo.GetCustomAttribute
+                (typeof(ColumnAttribute), false);
         }
 
-        public List<Column> GetColumnAttributes(PropertyInfo[] propertyInfos)
+        public List<ColumnAttribute> GetColumnAttributes(PropertyInfo[] propertyInfos)
         {
-            var columnList = new List<Column>();
+            var columnList = new List<ColumnAttribute>();
             foreach (var propertyInfo in propertyInfos)
             {
                 columnList.Add(GetColumnAttribute(propertyInfo));

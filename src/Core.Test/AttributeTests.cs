@@ -14,7 +14,7 @@ namespace Anthill.Engine.Test
         [InlineData(typeof(User),"User")]
         public void TestTableAttributeName(Type type, string value)
         {
-            var tableAttribute = type.GetCustomAttribute<Table>();
+            var tableAttribute = type.GetCustomAttribute<TableAttribute>();
             Assert.NotNull(tableAttribute);
             Assert.Equal(value, tableAttribute.Name);
         }
@@ -22,7 +22,7 @@ namespace Anthill.Engine.Test
         [Fact]
         public void TestTableAttributeNameEmpty()
         {
-            var tableAttribute = typeof(FailUser).GetCustomAttribute<Table>();
+            var tableAttribute = typeof(FailUser).GetCustomAttribute<TableAttribute>();
             Assert.NotNull(tableAttribute);
             Assert.Equal("", tableAttribute.Name);
         }
@@ -35,7 +35,7 @@ namespace Anthill.Engine.Test
         {
             var property = type.GetProperty(propertyName);
             Assert.NotNull(property);
-            var columnAttribute = property.GetCustomAttribute<Column>();
+            var columnAttribute = property.GetCustomAttribute<ColumnAttribute>();
             Assert.Equal(value, columnAttribute.Name);
         }
 
@@ -44,7 +44,7 @@ namespace Anthill.Engine.Test
         {
             var property = typeof(FailUser).GetProperties().First(prop => prop.Name == "Id");
             Assert.NotNull(property);
-            var columnAttribute = property.GetCustomAttribute<Column>();
+            var columnAttribute = property.GetCustomAttribute<ColumnAttribute>();
             Assert.Equal("", columnAttribute.Name);
         }
     }

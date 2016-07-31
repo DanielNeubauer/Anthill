@@ -3,7 +3,7 @@
 namespace Anthill.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class Column : Attribute
+    public class ColumnAttribute : Attribute
     {
         public string Name { get; set; }
         public bool AutoIncrement { get; set; }
