@@ -24,7 +24,7 @@ namespace Anthill.Engine.Test
         {
             var tableAttribute = typeof(FailUser).GetCustomAttribute<TableAttribute>();
             Assert.NotNull(tableAttribute);
-            Assert.Equal("", tableAttribute.Name);
+            Assert.Null(tableAttribute.Name);
         }
 
         [Theory]

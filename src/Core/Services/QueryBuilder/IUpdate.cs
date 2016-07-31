@@ -9,5 +9,6 @@ namespace Anthill.Engine.Services.QueryBuilder
     public interface IUpdate
     {
         ISet Set(params Tuple<string, object>[] clauses);
+        ISet Set(string column, object value);
     }
 }

@@ -12,7 +12,17 @@ namespace Anthill.Engine.Services.QueryBuilder
 
         }
 
-        private StringBuilder stringBuilder = new StringBuilder();
+        private string _table = "";
+        private List<string> _select = new List<string>();
+        private List<string> _values = new List<string>();
+        private List<string> _wheres = new List<string>();
+        private List<string> _columns = new List<string>();
+        private List<string> _sets = new List<string>();
+        private List<string> _orderBy = new List<string>();
+
+        private bool isInsert = false;
+        private bool isUpdate = false;
+        private bool isSelect = false;
 
         private IEnumerable<string> CorrectValues(object[] values)
         {
@@ -32,84 +42,152 @@ namespace Anthill.Engine.Services.QueryBuilder
             return value.ToString();
         }
 
-        public IInsertInto InsertInto(string tableName)
-        {
-            stringBuilder.Append($"INSERT INTO {tableName} ");
-            return this;
-        }
-
-        public IValues Values(params Tuple<string, object>[] clauses)
-        {
-            var columns = new List<String>();
-            var values = new List<object>();
-            foreach (var clause in clauses)
-            {
-                columns.Add(clause.Item1);
-                values.Add(clause.Item2);
-            }
-            stringBuilder.AppendFormat("({0})", string.Join(", ", columns));
-            Values(values.ToArray());
-            return this;
-        }
-
-        public IValues Values(params object[] values)
-        {
-            stringBuilder.Append(" VALUES ");
-            var correctValues = CorrectValues(values);
-            stringBuilder.AppendFormat("({0})", string.Join(", ", correctValues));
-            return this;
-        }
-
+        #region Select
         public ISelect Select(params string[] parameters)
         {
-            stringBuilder.Append("SELECT ");
-            stringBuilder.Append(string.Join(", ", parameters));
+            isSelect = true;
+            _select.AddRange(parameters);
             return this;
         }
 
         public IFrom From(string tableName)
         {
-            stringBuilder.Append($" FROM {tableName}");
+            _table = tableName;
             return this;
         }
 
         public IWhere Where(params string[] whereClauses)
         {
-            stringBuilder.Append(" WHERE ");
-            stringBuilder.Append(string.Join(" AND ", whereClauses));
+            _wheres.AddRange(whereClauses);
             return this;
         }
 
         public IOrderBy OrderBy(params string[] fields)
         {
-            stringBuilder.Append(" ORDER BY ");
-            stringBuilder.Append(string.Join(", ", fields));
+            _orderBy.AddRange(fields);
             return this;
         }
 
-        public SqlQueryBuilder Clear()
+        #endregion
+
+        #region Insert
+        public IInsertInto InsertInto(string tableName)
         {
-            stringBuilder.Clear();
+            isInsert = true;
+            _table = tableName;
             return this;
         }
 
-        public string ToQuery()
+        public IValues Values(params Tuple<string, object>[] clauses)
         {
-            return stringBuilder.ToString();
+            foreach (var clause in clauses)
+            {
+                _columns.Add(clause.Item1);
+                _values.Add(CorrectValue(clause.Item2));
+            }
+            return this;
         }
+
+        public IValues Values(params object[] values)
+        {
+            var correctValues = CorrectValues(values);
+            _values.AddRange(correctValues);
+            return this;
+        }
+
+        public IValues Value(string value)
+        {
+            _values.Add(value);
+            return this;
+        }
+
+        public IValues Value(string column, object value)
+        {
+            _values.Add(CorrectValue(value));
+            _columns.Add(column);
+            return this;
+        }
+        #endregion
+               
+        #region Update
 
         public IUpdate Update(string tableName)
         {
-            stringBuilder.Append($"UPDATE {tableName} ");
+            isUpdate = true;
+            _table = tableName;
             return this;
         }
 
         public ISet Set(params Tuple<string, object>[] clauses)
         {
-            stringBuilder.Append("SET ");
             var values = clauses.Select((input, output) => $"{input.Item1}={CorrectValue(input.Item2)}");
-            stringBuilder.Append(string.Join(", ", values));
+            _sets.AddRange(values);
             return this;
+        }
+
+        public ISet Set(string column, object value)
+        {
+            _sets.Add($"{column}={CorrectValue(value)}");
+            return this;
+        }
+        #endregion
+
+        public SqlQueryBuilder Clear()
+        {
+            _values.Clear();
+            _wheres.Clear();
+            _columns.Clear();
+            _sets.Clear();
+            _orderBy.Clear();
+            isInsert = false;
+            isUpdate = false;
+            isSelect = false;
+            return this;
+        }
+
+        public string ToQuery()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (isInsert)
+            {
+                stringBuilder.Append($"INSERT INTO {_table}");
+                if (_columns.Count > 0)
+                {
+                    stringBuilder.AppendFormat(" ({0})", string.Join(", ", _columns));
+                }
+                stringBuilder.Append(" VALUES ");
+                stringBuilder.AppendFormat("({0})", string.Join(", ", _values));
+            }
+            if (isUpdate && _sets.Count > 0)
+            {
+                stringBuilder.Append($"UPDATE {_table} ");
+                stringBuilder.Append("SET ");
+                stringBuilder.Append(string.Join(", ", _sets));
+            }
+            if (isSelect)
+            {
+                stringBuilder.Append("SELECT ");
+                if (_select.Count == 0)
+                {
+                    stringBuilder.Append("*");
+                }
+                else
+                {
+                    stringBuilder.Append(string.Join(", ", _select));
+                }
+                stringBuilder.Append($" FROM {_table}");
+            }
+            if(_wheres.Count > 0)
+            {
+                stringBuilder.Append(" WHERE ");
+                stringBuilder.Append(string.Join(" AND ", _wheres));
+            }
+            if(_orderBy.Count > 0)
+            {
+                stringBuilder.Append(" ORDER BY ");
+                stringBuilder.Append(string.Join(", ", _orderBy));
+            }
+            return stringBuilder.ToString();
         }
     }
 }

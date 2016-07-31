@@ -6,16 +6,9 @@ namespace Anthill.Core.Test
     public class SqlQueryBuilderTests
     {
         [Fact]
-        public void TestFullSelect()
+        public void TestSelectSingleWhere()
         {
             var queryBuilder = new SqlQueryBuilder() as ISelectQueryBuilder;
-
-            queryBuilder
-                .Select("")
-                .From("")
-                .Where("")
-                .OrderBy("hugo")
-                .ToQuery();
 
             var query = queryBuilder
                 .Select("Id", "Name", "InUse")
@@ -24,6 +17,35 @@ namespace Anthill.Core.Test
                 .ToQuery();
 
             Assert.Equal("SELECT Id, Name, InUse FROM User WHERE Name = 'hamster'", query);
+        }
+
+        [Fact]
+        public void TestSelectMultipleWhere()
+        {
+            var queryBuilder = new SqlQueryBuilder() as ISelectQueryBuilder;
+
+            var query = queryBuilder
+                .Select("Id", "Name", "InUse")
+                .From("User")
+                .Where("Name = 'hamster'")
+                .Where("Id = 1")
+                .ToQuery();
+
+            Assert.Equal("SELECT Id, Name, InUse FROM User WHERE Name = 'hamster' AND Id = 1", query);
+        }
+
+        [Fact]
+        public void TestSelectMultipleWhereParams()
+        {
+            var queryBuilder = new SqlQueryBuilder() as ISelectQueryBuilder;
+
+            var query = queryBuilder
+                .Select("Id", "Name", "InUse")
+                .From("User")
+                .Where("Name = 'hamster'", "Id = 1")
+                .ToQuery();
+
+            Assert.Equal("SELECT Id, Name, InUse FROM User WHERE Name = 'hamster' AND Id = 1", query);
         }
 
         [Fact]
@@ -37,6 +59,20 @@ namespace Anthill.Core.Test
                     new System.Tuple<string, object>("Name","hamster"),
                     new System.Tuple<string, object>("InUse",true),
                 })
+                .ToQuery();
+
+            Assert.Equal("INSERT INTO User (Name, InUse) VALUES ('hamster', true)", query);
+        }
+
+        [Fact]
+        public void TestInsertMultipleValues()
+        {
+            var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
+
+            var query = queryBuilder
+                .InsertInto("User")
+                .Value("Name","hamster")
+                .Value("InUse",true)
                 .ToQuery();
 
             Assert.Equal("INSERT INTO User (Name, InUse) VALUES ('hamster', true)", query);
@@ -66,6 +102,21 @@ namespace Anthill.Core.Test
                     new System.Tuple<string, object>("Name","hamster1"),
                     new System.Tuple<string, object>("InUse",true),
                 })
+                .Where("Name = 'hamster'")
+                .ToQuery();
+
+            Assert.Equal("UPDATE User SET Name='hamster1', InUse=true WHERE Name = 'hamster'", query);
+        }
+
+        [Fact]
+        public void TestUpdateMultipleSet()
+        {
+            var queryBuilder = new SqlQueryBuilder() as IUpdateStatementBuilder;
+
+            var query = queryBuilder
+                .Update("User")
+                .Set("Name","hamster1")
+                .Set("InUse",true)
                 .Where("Name = 'hamster'")
                 .ToQuery();
 
