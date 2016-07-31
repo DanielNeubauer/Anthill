@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anthill.Engine.Models
+namespace Anthill.Core.Models
 {
     public class TableModel
     {

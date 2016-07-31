@@ -26,7 +26,7 @@ namespace Anthill.Engine.Services.Attributes
             return columnList;
         }
 
-        public object[] GetDataBaseAttribute(Type t)
+        public object[] GetClassAttributes(Type t)
         {
             return Attribute.GetCustomAttributes(t);
         }

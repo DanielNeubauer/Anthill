@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anthill.Core.Models
+namespace Anthill.Engine.Services.Configuration
 {
-    public class DatabaseModel
+    public class ConfigurationModel
     {
-        public List<TableModel> Tables;
-        public string Name;
         public string ConnectionString;
-
     }
 }

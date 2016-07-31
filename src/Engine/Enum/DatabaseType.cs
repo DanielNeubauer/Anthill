@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anthill.Engine.Enum
+namespace Anthill.Core.Enum
 {
     public enum DatabaseType
     {

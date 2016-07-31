@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace Engine.Test
+namespace Anthill.Core.Test
 {
     public class UnitTest1
     {

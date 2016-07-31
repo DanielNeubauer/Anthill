@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anthill.Engine.Attributes
+namespace Anthill.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class Column : Attribute
