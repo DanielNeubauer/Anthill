@@ -61,7 +61,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Models\User.cs" />
+    <Compile Include="AttributeTests.cs" />
+    <Compile Include="Mocks\FailUser.cs" />
+    <Compile Include="Mocks\User.cs" />
     <Compile Include="TableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
