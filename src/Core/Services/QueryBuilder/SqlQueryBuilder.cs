@@ -13,11 +13,9 @@ namespace Anthill.Engine.Services.QueryBuilder
         }
 
         private string _table = "";
-        private List<string> _select = new List<string>();
         private List<string> _values = new List<string>();
         private List<string> _wheres = new List<string>();
         private List<string> _columns = new List<string>();
-        private List<string> _sets = new List<string>();
         private List<string> _orderBy = new List<string>();
 
         private bool isInsert = false;
@@ -46,7 +44,7 @@ namespace Anthill.Engine.Services.QueryBuilder
         public ISelect Select(params string[] parameters)
         {
             isSelect = true;
-            _select.AddRange(parameters);
+            _columns.AddRange(parameters);
             return this;
         }
 
@@ -120,14 +118,18 @@ namespace Anthill.Engine.Services.QueryBuilder
 
         public ISet Set(params Tuple<string, object>[] clauses)
         {
-            var values = clauses.Select((input, output) => $"{input.Item1}={CorrectValue(input.Item2)}");
-            _sets.AddRange(values);
+            foreach(var clause in clauses)
+            {
+                _columns.Add(clause.Item1);
+                _values.Add(CorrectValue(clause.Item2));
+            }
             return this;
         }
 
         public ISet Set(string column, object value)
         {
-            _sets.Add($"{column}={CorrectValue(value)}");
+            _columns.Add(column);
+            _values.Add(CorrectValue(value));
             return this;
         }
         #endregion
@@ -137,7 +139,6 @@ namespace Anthill.Engine.Services.QueryBuilder
             _values.Clear();
             _wheres.Clear();
             _columns.Clear();
-            _sets.Clear();
             _orderBy.Clear();
             isInsert = false;
             isUpdate = false;
@@ -158,22 +159,27 @@ namespace Anthill.Engine.Services.QueryBuilder
                 stringBuilder.Append(" VALUES ");
                 stringBuilder.AppendFormat("({0})", string.Join(", ", _values));
             }
-            if (isUpdate && _sets.Count > 0)
+            if (isUpdate && _columns.Count > 0 && _values.Count > 0)
             {
                 stringBuilder.Append($"UPDATE {_table} ");
                 stringBuilder.Append("SET ");
-                stringBuilder.Append(string.Join(", ", _sets));
+                var sets = new List<string>();
+                for(int i = 0; i< _columns.Count; i++)
+                {
+                    sets.Add($"{_columns[i]}={_values[i]}");
+                }
+                stringBuilder.Append(string.Join(", ", sets));
             }
             if (isSelect)
             {
                 stringBuilder.Append("SELECT ");
-                if (_select.Count == 0)
+                if (_columns.Count == 0)
                 {
                     stringBuilder.Append("*");
                 }
                 else
                 {
-                    stringBuilder.Append(string.Join(", ", _select));
+                    stringBuilder.Append(string.Join(", ", _columns));
                 }
                 stringBuilder.Append($" FROM {_table}");
             }
