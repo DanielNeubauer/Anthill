@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anthill.Engine.Services.Configuration
+namespace Anthill.Core.Services.Configuration
 {
     public class ConfigurationModel
     {

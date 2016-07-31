@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Anthill.Engine.Attributes;
+using Anthill.Core.Attributes;
 
 namespace Anthill.Engine.Services.Attributes
 {

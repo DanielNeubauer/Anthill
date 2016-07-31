@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Anthill.Engine.Services.Json;
+using Anthill.Core.Services.Json;
 
-namespace Anthill.Engine.Services.Configuration
+namespace Anthill.Core.Services.Configuration
 {
     public class ConfigurationManager
     {

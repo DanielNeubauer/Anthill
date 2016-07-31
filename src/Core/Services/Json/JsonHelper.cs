@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Anthill.Engine.Services.Configuration;
+using Anthill.Core.Services.Configuration;
 using Newtonsoft.Json;
 
-namespace Anthill.Engine.Services.Json
+namespace Anthill.Core.Services.Json
 {
     class JsonHelper
     {

@@ -1,4 +1,4 @@
-﻿using Anthill.Engine.Attributes;
+﻿using Anthill.Core.Attributes;
 
 namespace Anthill.Core.Test.Models
 {
