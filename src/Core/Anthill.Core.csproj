@@ -56,6 +56,7 @@
     <Compile Include="Services\Configuration\ConfigurationManager.cs" />
     <Compile Include="Services\Configuration\ConfigurationModel.cs" />
     <Compile Include="Services\Json\JsonHelper.cs" />
+    <Compile Include="Services\SqlQueryBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\ContentFiles\config.json" />
