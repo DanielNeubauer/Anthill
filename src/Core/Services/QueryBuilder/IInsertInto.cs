@@ -11,6 +11,6 @@ namespace Anthill.Engine.Services.QueryBuilder
         IValues Values(params Tuple<string, object>[] clauses);
         IValues Values(params object[] values);
         IValues Value(string column, object value);
-        IValues Value(string value);
+        IValues Value(object value);
     }
 }

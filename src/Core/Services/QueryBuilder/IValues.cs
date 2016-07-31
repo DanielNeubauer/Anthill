@@ -8,7 +8,7 @@ namespace Anthill.Engine.Services.QueryBuilder
 {
     public interface IValues : IToQuery
     {
-        IValues Value(string value);
+        IValues Value(object value);
         IValues Value(string column, object value);
     }
 }

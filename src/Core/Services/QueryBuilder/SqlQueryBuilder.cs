@@ -93,9 +93,9 @@ namespace Anthill.Engine.Services.QueryBuilder
             return this;
         }
 
-        public IValues Value(string value)
+        public IValues Value(object value)
         {
-            _values.Add(value);
+            _values.Add(CorrectValue(value));
             return this;
         }
 
