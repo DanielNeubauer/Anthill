@@ -18,17 +18,17 @@ namespace Anthill.Engine.Services
         public SqlQueryBuilder Select(params string[] parameters)
         {
             stringBuilder.Append("SELECT ");
-            stringBuilder.Append(string.Join(",", parameters));
+            stringBuilder.Append(string.Join(", ", parameters));
             return this;
         }
 
         public SqlQueryBuilder From(string tableName)
         {
-            stringBuilder.Append(" FROM {tableName}");
+            stringBuilder.Append($" FROM {tableName}");
             return this;
         }
 
-        public SqlQueryBuilder Where(string[] whereClauses)
+        public SqlQueryBuilder Where(params string[] whereClauses)
         {
             stringBuilder.Append(" WHERE ");
             stringBuilder.Append(string.Join(" AND ", whereClauses));
@@ -38,7 +38,7 @@ namespace Anthill.Engine.Services
         public SqlQueryBuilder OrderBy(params string[] fields)
         {
             stringBuilder.Append(" ORDER BY ");
-            stringBuilder.Append(string.Join(",", fields));
+            stringBuilder.Append(string.Join(", ", fields));
             return this;
         }
 
