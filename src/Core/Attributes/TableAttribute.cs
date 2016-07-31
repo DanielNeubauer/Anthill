@@ -3,7 +3,7 @@
 namespace Anthill.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class TableAttribute :Attribute
+    public class TableAttribute : Attribute
     {
         public TableAttribute(string name)
         {
