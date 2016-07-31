@@ -5,7 +5,11 @@ namespace Anthill.Core.Attributes
     [AttributeUsage(AttributeTargets.Property)]
     public class ColumnAttribute : Attribute
     {
-        public ColumnAttribute(string name)
+        public ColumnAttribute()
+        {
+
+        }
+        public ColumnAttribute(string name):this()
         {
             Name = name;
         }
