@@ -1,17 +1,20 @@
-﻿using Anthill.Core.Attributes;
+﻿using Xunit;
+using Anthill.Core.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Anthill.Core.Test.Models;
 using Anthill.Engine.Extensions;
 using Anthill.Engine.Test.Mocks;
-using System;
-using System.Linq;
-using Xunit;
 
-namespace Anthill.Engine.Test
+namespace Anthill.Core.Attributes.Tests
 {
     public class AttributeTests
     {
         [Theory]
-        [InlineData(typeof(User),"User")]
+        [InlineData(typeof(User), "User")]
         public void TestTableAttributeName(Type type, string value)
         {
             var tableAttribute = type.GetCustomAttribute<TableAttribute>();
@@ -28,7 +31,7 @@ namespace Anthill.Engine.Test
         }
 
         [Theory]
-        [InlineData(typeof(User), "Id","Id")]
+        [InlineData(typeof(User), "Id", "Id")]
         [InlineData(typeof(User), "Name", "Name")]
         [InlineData(typeof(User), "InUse", "Used")]
         public void TestColumnAttributeName(Type type, string propertyName, string value)

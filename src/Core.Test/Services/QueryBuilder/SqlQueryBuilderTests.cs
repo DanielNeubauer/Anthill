@@ -11,7 +11,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
     public class SqlQueryBuilderTests
     {
         [Fact]
-        public void TestSelectSingleWhere()
+        public void SelectOneWhereTest()
         {
             var queryBuilder = new SqlQueryBuilder() as ISelectQueryBuilder;
 
@@ -25,7 +25,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestSelectMultipleWhere()
+        public void SelectMultipleWhereTest()
         {
             var queryBuilder = new SqlQueryBuilder() as ISelectQueryBuilder;
 
@@ -40,7 +40,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestSelectMultipleWhereParams()
+        public void SelectMultipleWhereParamsTest()
         {
             var queryBuilder = new SqlQueryBuilder() as ISelectQueryBuilder;
 
@@ -54,7 +54,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestFullInsert()
+        public void FullInsertTest()
         {
             var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
 
@@ -70,7 +70,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestInsertMultipleValues()
+        public void InsertMultipleValuesTest()
         {
             var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
 
@@ -84,7 +84,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestInsertWithoutColumns()
+        public void InsertWithoutColumnsTest()
         {
             var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
 
@@ -97,7 +97,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestInsertWithoutColumnsMultipleValues()
+        public void InsertWithoutColumnsMultipleValuesTest()
         {
             var queryBuilder = new SqlQueryBuilder() as IInsertStatementBuilder;
 
@@ -111,7 +111,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestUpdate()
+        public void UpdateTest()
         {
             var queryBuilder = new SqlQueryBuilder() as IUpdateStatementBuilder;
 
@@ -128,7 +128,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         }
 
         [Fact]
-        public void TestUpdateMultipleSet()
+        public void UpdateMultipleSetTest()
         {
             var queryBuilder = new SqlQueryBuilder() as IUpdateStatementBuilder;
 

@@ -62,7 +62,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="AttributeTests.cs" />
+    <Compile Include="Attributes\AttributeTests.cs" />
     <Compile Include="Mocks\FailUser.cs" />
     <Compile Include="Mocks\User.cs" />
     <Compile Include="Services\Configuration\TestConfigurationManager.cs" />

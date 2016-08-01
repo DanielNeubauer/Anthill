@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Anthill.Engine.Services.QueryBuilder
 {
-    public interface IWhere : IToQuery
+    public interface IWhere : IToQuery,IOrderBy
     {
         IWhere Where(params string[] whereClauses);
-        IOrderBy OrderBy(params string[] fields);
     }
 }
