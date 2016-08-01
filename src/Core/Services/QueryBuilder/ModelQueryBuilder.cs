@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Anthill.Engine.Services.QueryBuilder
 {
-    public class ModelQueryBuilder<TModel>
+    public class ModelQueryBuilder<TModel> : SqlQueryBuilder
     {
-        private SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
-
         public ModelQueryBuilder()
         {
 
@@ -21,19 +17,14 @@ namespace Anthill.Engine.Services.QueryBuilder
         public ModelQueryBuilder<TModel> Where(Expression<Func<TModel, bool>> predicate)
         {
             var body = predicate.Body as BinaryExpression;
-            queryBuilder.Where($"{GetExpressionValue(body.Left)} {GetOperator(body.NodeType)} {GetExpressionValue(body.Right)}");
+            Where($"{GetExpressionValue(body.Left)} {GetOperator(body.NodeType)} {GetExpressionValue(body.Right)}");
             return this;
         }
 
         public ModelQueryBuilder<TModel> Select(params Expression<Func<TModel, object>>[] columns)
         {
-            queryBuilder.Select(GetColumns(columns).ToArray()).From(TableName);
+            Select(GetColumns(columns).ToArray()).From(TableName);
             return this;
-        }
-
-        public string ToQuery()
-        {
-            return queryBuilder.ToQuery();
         }
 
         private string GetExpressionValue(Expression expression)
