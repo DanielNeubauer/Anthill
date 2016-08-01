@@ -74,6 +74,7 @@
     <Compile Include="Services\QueryBuilder\IUpdateStatementBuilder.cs" />
     <Compile Include="Services\QueryBuilder\IValues.cs" />
     <Compile Include="Services\QueryBuilder\IWhere.cs" />
+    <Compile Include="Services\QueryBuilder\ModelQueryBuilder.cs" />
     <Compile Include="Services\QueryBuilder\SqlQueryBuilder.cs" />
     <Compile Include="Services\QueryBuilder\SqlStructureBuilder.cs" />
   </ItemGroup>
