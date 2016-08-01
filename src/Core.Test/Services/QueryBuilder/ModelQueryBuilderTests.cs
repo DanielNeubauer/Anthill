@@ -14,7 +14,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         [Fact()]
         public void SelectTest()
         {
-            var queryBuilder = new ModelQueryBuilder<User>();
+            var queryBuilder = new ModelQueryBuilder<User>() as IModelSelectQueryBuilder<User>;
 
             var result = queryBuilder.Select(u => u.Id, u => u.Name, u => u.InUse).ToQuery();
 
@@ -24,7 +24,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         [Fact()]
         public void SelectWhereBoolTrue()
         {
-            var queryBuilder = new ModelQueryBuilder<User>();
+            var queryBuilder = new ModelQueryBuilder<User>() as IModelSelectQueryBuilder<User>;
 
             var result = queryBuilder.Select(u => u.Id, u => u.Name, u => u.InUse).Where(u => u.InUse == true).ToQuery();
 
@@ -34,7 +34,7 @@ namespace Anthill.Engine.Services.QueryBuilder.Tests
         [Fact()]
         public void SelectWhereGreaterThan()
         {
-            var queryBuilder = new ModelQueryBuilder<User>();
+            var queryBuilder = new ModelQueryBuilder<User>() as IModelSelectQueryBuilder<User>;
 
             var result = queryBuilder.Select(u => u.Id, u => u.Name, u => u.InUse)
                 .Where(u => u.Id >= 0)

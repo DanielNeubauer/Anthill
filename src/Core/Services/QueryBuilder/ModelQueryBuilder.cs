@@ -7,23 +7,29 @@ using System.Reflection;
 
 namespace Anthill.Engine.Services.QueryBuilder
 {
-    public class ModelQueryBuilder<TModel> : SqlQueryBuilder
+    public class ModelQueryBuilder<TModel> : SqlQueryBuilder, IModelSelect<TModel>, IModelWhere<TModel>, IModelSelectQueryBuilder<TModel>
     {
         public ModelQueryBuilder()
         {
 
         }
 
-        public ModelQueryBuilder<TModel> Where(Expression<Func<TModel, bool>> predicate)
+        public IModelWhere<TModel> Where(Expression<Func<TModel, bool>> predicate)
         {
             var body = predicate.Body as BinaryExpression;
             Where($"{GetExpressionValue(body.Left)} {GetOperator(body.NodeType)} {GetExpressionValue(body.Right)}");
             return this;
         }
 
-        public ModelQueryBuilder<TModel> Select(params Expression<Func<TModel, object>>[] columns)
+        public IModelSelect<TModel> Select(params Expression<Func<TModel, object>>[] columns)
         {
             Select(GetColumns(columns).ToArray()).From(TableName);
+            return this;
+        }
+
+        public IModelOrderBy<TModel> OrderBy(params Expression<Func<TModel, object>>[] columns)
+        {
+            OrderBy(GetColumns(columns).ToArray());
             return this;
         }
 

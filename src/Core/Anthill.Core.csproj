@@ -64,6 +64,10 @@
     <Compile Include="Services\QueryBuilder\IFrom.cs" />
     <Compile Include="Services\QueryBuilder\IInsertInto.cs" />
     <Compile Include="Services\QueryBuilder\IInsertStatementBuilder.cs" />
+    <Compile Include="Services\QueryBuilder\IModelOrderBy.cs" />
+    <Compile Include="Services\QueryBuilder\IModelSelect.cs" />
+    <Compile Include="Services\QueryBuilder\IModelSelectQueryBuilder.cs" />
+    <Compile Include="Services\QueryBuilder\IModelWhere.cs" />
     <Compile Include="Services\QueryBuilder\IOrderBy.cs" />
     <Compile Include="Services\QueryBuilder\IPrimaryKey.cs" />
     <Compile Include="Services\QueryBuilder\ISelect.cs" />
