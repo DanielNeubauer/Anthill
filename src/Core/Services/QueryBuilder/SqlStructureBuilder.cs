@@ -86,6 +86,7 @@ namespace Anthill.Engine.Services.QueryBuilder
                 }
                 stringBuilder.Append(");");
             }
+            Clear();
             return stringBuilder.ToString();
         }
     }

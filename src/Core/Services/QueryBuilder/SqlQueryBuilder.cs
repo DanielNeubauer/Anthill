@@ -193,6 +193,7 @@ namespace Anthill.Engine.Services.QueryBuilder
                 stringBuilder.Append(" ORDER BY ");
                 stringBuilder.Append(string.Join(", ", _orderBy));
             }
+            Clear();
             return stringBuilder.ToString();
         }
     }
