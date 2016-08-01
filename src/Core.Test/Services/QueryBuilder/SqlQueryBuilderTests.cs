@@ -1,7 +1,12 @@
-﻿using Anthill.Engine.Services.QueryBuilder;
-using Xunit;
+﻿using Xunit;
+using Anthill.Engine.Services.QueryBuilder;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Anthill.Core.Test
+namespace Anthill.Engine.Services.QueryBuilder.Tests
 {
     public class SqlQueryBuilderTests
     {
@@ -71,8 +76,8 @@ namespace Anthill.Core.Test
 
             var query = queryBuilder
                 .InsertInto("User")
-                .Value("Name","hamster")
-                .Value("InUse",true)
+                .Value("Name", "hamster")
+                .Value("InUse", true)
                 .ToQuery();
 
             Assert.Equal("INSERT INTO User (Name, InUse) VALUES ('hamster', true)", query);
@@ -85,7 +90,7 @@ namespace Anthill.Core.Test
 
             var query = queryBuilder
                 .InsertInto("User")
-                .Values("hamster",true)
+                .Values("hamster", true)
                 .ToQuery();
 
             Assert.Equal("INSERT INTO User VALUES ('hamster', true)", query);
@@ -129,8 +134,8 @@ namespace Anthill.Core.Test
 
             var query = queryBuilder
                 .Update("User")
-                .Set("Name","hamster1")
-                .Set("InUse",true)
+                .Set("Name", "hamster1")
+                .Set("InUse", true)
                 .Where("Name = 'hamster'")
                 .ToQuery();
 
