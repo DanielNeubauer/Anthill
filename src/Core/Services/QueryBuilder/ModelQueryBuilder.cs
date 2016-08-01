@@ -18,6 +18,13 @@ namespace Anthill.Engine.Services.QueryBuilder
 
         }
 
+        public ModelQueryBuilder<TModel> Where(Expression<Func<TModel, bool>> predicate)
+        {
+            var body = predicate.Body as BinaryExpression;
+            queryBuilder.Where($"{GetExpressionValue(body.Left)} {GetOperator(body.NodeType)} {GetExpressionValue(body.Right)}");
+            return this;
+        }
+
         public ModelQueryBuilder<TModel> Select(params Expression<Func<TModel, object>>[] columns)
         {
             queryBuilder.Select(GetColumns(columns).ToArray()).From(TableName);
@@ -27,6 +34,50 @@ namespace Anthill.Engine.Services.QueryBuilder
         public string ToQuery()
         {
             return queryBuilder.ToQuery();
+        }
+
+        private string GetExpressionValue(Expression expression)
+        {
+            var memberExpression = expression as MemberExpression;
+            if (memberExpression != null)
+            {
+                return (memberExpression.Member as PropertyInfo)?.GetCustomAttribute<ColumnAttribute>()?.Name ?? "";
+            }
+            var constantExpression = expression as ConstantExpression;
+            if (constantExpression != null)
+            {
+                if (constantExpression.Value.GetType() == typeof(string))
+                {
+                    return $"'{constantExpression.Value}'";
+                }
+                if(constantExpression.Value.GetType() == typeof(bool))
+                {
+                    var value = constantExpression.Value.ToString();
+                    return bool.Parse(constantExpression.Value.ToString()) ? "1" : "0";
+                }
+                return constantExpression.Value.ToString();
+            }
+            return "";
+        }
+
+        private string GetOperator(ExpressionType type)
+        {
+            switch (type)
+            {
+                case ExpressionType.Equal:
+                    return "=";
+                case ExpressionType.GreaterThanOrEqual:
+                    return ">=";
+                case ExpressionType.GreaterThan:
+                    return ">";
+                case ExpressionType.NotEqual:
+                    return "<>";
+                case ExpressionType.LessThan:
+                    return "<";
+                case ExpressionType.LessThanOrEqual:
+                    return "<=";
+            }
+            return "";
         }
 
         private IEnumerable<string> GetColumns<TResult>(Expression<Func<TModel, TResult>>[] columns)
