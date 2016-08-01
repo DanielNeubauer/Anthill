@@ -56,10 +56,14 @@
     <Compile Include="Services\Configuration\ConfigurationManager.cs" />
     <Compile Include="Services\Configuration\ConfigurationModel.cs" />
     <Compile Include="Services\Json\JsonHelper.cs" />
+    <Compile Include="Services\QueryBuilder\IColumn.cs" />
+    <Compile Include="Services\QueryBuilder\ICreate.cs" />
+    <Compile Include="Services\QueryBuilder\ICreateStatementBuilder.cs" />
     <Compile Include="Services\QueryBuilder\IFrom.cs" />
     <Compile Include="Services\QueryBuilder\IInsertInto.cs" />
     <Compile Include="Services\QueryBuilder\IInsertStatementBuilder.cs" />
     <Compile Include="Services\QueryBuilder\IOrderBy.cs" />
+    <Compile Include="Services\QueryBuilder\IPrimaryKey.cs" />
     <Compile Include="Services\QueryBuilder\ISelect.cs" />
     <Compile Include="Services\QueryBuilder\ISelectQueryBuilder.cs" />
     <Compile Include="Services\QueryBuilder\ISet.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Services\QueryBuilder\IValues.cs" />
     <Compile Include="Services\QueryBuilder\IWhere.cs" />
     <Compile Include="Services\QueryBuilder\SqlQueryBuilder.cs" />
+    <Compile Include="Services\QueryBuilder\SqlStructureBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\ContentFiles\config.json" />
