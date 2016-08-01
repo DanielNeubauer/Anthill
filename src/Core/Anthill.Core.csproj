@@ -59,6 +59,8 @@
     <Compile Include="Services\QueryBuilder\IColumn.cs" />
     <Compile Include="Services\QueryBuilder\ICreate.cs" />
     <Compile Include="Services\QueryBuilder\ICreateStatementBuilder.cs" />
+    <Compile Include="Services\QueryBuilder\IDrop.cs" />
+    <Compile Include="Services\QueryBuilder\IDropStatementBuilder.cs" />
     <Compile Include="Services\QueryBuilder\IFrom.cs" />
     <Compile Include="Services\QueryBuilder\IInsertInto.cs" />
     <Compile Include="Services\QueryBuilder\IInsertStatementBuilder.cs" />

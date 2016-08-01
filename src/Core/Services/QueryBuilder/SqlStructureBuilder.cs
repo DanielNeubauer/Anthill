@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Anthill.Engine.Services.QueryBuilder
 {
-    public class SqlStructureBuilder : IToQuery, IColumn, ICreateStatementBuilder, ICreate, IPrimaryKey
+    public class SqlStructureBuilder : IToQuery, IColumn, ICreateStatementBuilder, ICreate, IPrimaryKey, IDropStatementBuilder, IDrop
     {
         public SqlStructureBuilder()
         {
@@ -18,6 +18,14 @@ namespace Anthill.Engine.Services.QueryBuilder
         private string _tableName = "";
         private List<Tuple<string, string, int>> _columns = new List<Tuple<string, string, int>>();
         private List<string> _primaryKeys = new List<string>();
+        private bool _isDropTable;
+
+        public IDrop DropTable(string tableName)
+        {
+            _isDropTable = true;
+            _tableName = tableName;
+            return this;
+        }
 
         public ICreate CreateTable(string tableName)
         {
@@ -38,17 +46,23 @@ namespace Anthill.Engine.Services.QueryBuilder
             return this;
         }
 
-        public void Clear()
+        public SqlStructureBuilder Clear()
         {
             _tableName = "";
             _columns = new List<Tuple<string, string, int>>();
             _primaryKeys = new List<string>();
             _isCreateTable = false;
+            _isDropTable = false;
+            return this;
         }
 
         public string ToQuery()
         {
             var stringBuilder = new StringBuilder();
+            if (_isDropTable)
+            {
+                stringBuilder.Append($"DROP TABLE {_tableName};");
+            }
             if (_isCreateTable)
             {
                 stringBuilder.Append($"CREATE TABLE {_tableName}(");
